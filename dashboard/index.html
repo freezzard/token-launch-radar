@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true"><span></span></div>
+    <div>
+      <h1>Token Launch Radar</h1>
+      <p class="tagline">Protocols that record no token yet, ranked by what a token would be worth if priced like their tokenized peers — products of tokens that already trade are set apart, not ranked — and what to farm before launch.</p>
+    </div>
+  </div>
+  <dl class="stats" id="stats"></dl>
+</header>
+
+<section class="model-strip" id="model-strip"></section>
+
+<main id="board-view">
+  <div class="controls">
+    <label class="ctl grow">Search
+      <input id="q" type="search" placeholder="protocol name, slug or chain…" autocomplete="off">
+    </label>
+    <label class="ctl">Category
+      <select id="f-category"><option value="">All categories</option></select>
+    </label>
+    <label class="ctl">Chain
+      <select id="f-chain"><option value="">All chains</option></select>
+    </label>
+    <label class="ctl check"><input id="f-watch" type="checkbox"> Watchlist only <span class="hint">(≥ $50M TVL)</span></label>
+    <label class="ctl">Show
+      <select id="f-limit">
+        <option value="60">Top 60</option>
+        <option value="120">Top 120</option>
+        <option value="240">Top 240</option>
+        <option value="all">All rows</option>
+      </select>
+    </label>
+  </div>
+
+  <p class="result-line" id="result-line"></p>
+
+  <div class="table-wrap">
+    <table id="board">
+      <thead>
+        <tr>
+          <th data-sort="rank" class="num sortable">Rank</th>
+          <th data-sort="name" class="sortable">Protocol</th>
+          <th data-sort="category" class="sortable">Category</th>
+          <th>Chains</th>
+          <th data-sort="tvl_usd" class="num sortable">TVL</th>
+          <th data-sort="change_7d" class="num sortable">7d change</th>
+          <th data-sort="implied_value_usd" class="num sortable">Implied value</th>
+          <th class="num">Ratio</th>
+        </tr>
+      </thead>
+      <tbody id="board-body"></tbody>
+    </table>
+  </div>
+
+  <section class="live-block">
+    <h2>Set apart — never ranked</h2>
+    <p class="live-note">Two groups sit here, neither of them ranked. Protocols whose token already trades, shown with the market's own market cap — their median mcap/TVL ratios are the peer evidence the model prices pre-token protocols from. And protocols that record no token but whose product is a token that already trades in another form — a bridge or wrapped or staked form of it, a staking or restaking product, an exchange product, or a versioned re-issue — each shown with the reason it is set apart.</p>
+    <div class="table-wrap">
+      <table id="live">
+        <thead><tr><th>Protocol</th><th>Category</th><th class="num">TVL</th><th class="num">Market cap</th><th class="num">mcap / TVL</th></tr></thead>
+        <tbody id="live-body"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<main id="detail-view" hidden></main>
+
+<footer>
+  <p>Implied value is this radar's own model claim, derived only from the snapshot's figures — never a prediction that a token will be issued. Snapshot source is named in the header data; the board separates protocols that record no token from those whose token already trades.</p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
